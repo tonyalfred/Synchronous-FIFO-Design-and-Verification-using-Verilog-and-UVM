@@ -45,16 +45,25 @@
 
         forever begin
           seq_item_port.get_next_item(m_item);
-          reset (m_item);
+          reset_dut(m_item);
           seq_item_port.item_done();
         end
       endtask
 
-      task reset(sync_fifo_reset_item item);
+      task reset_dut(sync_fifo_reset_item item);
+
+        // SYNCHRONOUS RESET //
+        /*
         m_vif.RST <= 1'b1;
         @ (posedge m_vif.CLK);
         m_vif.RST <= 1'b0;
         repeat (item.cycles) @ (posedge m_vif.CLK);
+        m_vif.RST <= 1'b1;
+        */
+
+        // ASYNCHRONOUS RESET //
+        m_vif.RST <= 1'b0;
+        #(item.reset_time_ps * 1ps);
         m_vif.RST <= 1'b1;
       endtask
     endclass 

@@ -10,6 +10,8 @@
   `include "uvm_macros.svh"
   `include "sync_fifo_pkg.sv"
 
+  `timescale 1ns/1ps
+
   module tb_top;
     import uvm_pkg::*;
     import sync_fifo_pkg::*;
@@ -40,12 +42,6 @@
     initial begin
         CLK = 1;
         forever #(CLK_PERIOD/2) CLK = ~ CLK;
-    end
-
-    initial begin
-        if0.RST = 1'b1;
-        # (CLK_PERIOD/8) if0.RST = 1'b0;
-        # (CLK_PERIOD/8) if0.RST = 1'b1;
     end
 
     initial begin 
