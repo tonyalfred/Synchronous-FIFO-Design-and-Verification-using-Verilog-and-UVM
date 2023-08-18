@@ -5,24 +5,22 @@ module sync_fifo #
         parameter PTR_WIDTH = $clog2(DEPTH)
     )
     (
-        input  wire             CLK, 
-        input  wire             RST, 
+        input  wire               CLK, 
+        input  wire               RST, 
 
-        input  wire [WIDTH-1:0] DATA_IN, 
-        input  wire             WR_EN,
+        input  wire [WIDTH-1:0]   DATA_IN, 
+        input  wire               WR_EN,
 
-        input  wire             RD_EN, 
-        output reg  [WIDTH-1:0] DATA_OUT, 
+        input  wire               RD_EN, 
+        output reg  [WIDTH-1:0]   DATA_OUT, 
+        output reg  [PTR_WIDTH:0] CNTR,
 
-        output wire             EMPTY, 
-        output wire             FULL
+        output wire               EMPTY, 
+        output wire               FULL
     );
 
     // FIFO RAM REGISTERS
     reg [WIDTH-1:0] FIFO_REG [0:DEPTH-1];
-
-    // COUNTER
-    reg [PTR_WIDTH:0] CNTR;
 
     // POINTERS
     reg [PTR_WIDTH-1:0] RD_PTR, WR_PTR;

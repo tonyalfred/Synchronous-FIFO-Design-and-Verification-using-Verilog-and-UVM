@@ -34,6 +34,7 @@
 
       .RD_EN    (if0.RD_EN), 
       .DATA_OUT (if0.DATA_OUT),
+      .CNTR     (if0.CNTR),
       
       .FULL     (if0.FULL),
       .EMPTY    (if0.EMPTY)

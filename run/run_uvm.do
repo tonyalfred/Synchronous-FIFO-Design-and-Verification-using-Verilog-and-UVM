@@ -1,5 +1,6 @@
 vlog -cover bcest rtl/sync_fifo.v 
-vsim +UVM_VERBOSITY=UVM_HIGH -voptargs=+acc work.tb_top -logfile transcript.log
+vopt +acc=a work.tb_top -o dbgver
+vsim +UVM_VERBOSITY=UVM_HIGH -assertdebug -voptargs=+acc work.tb_top -logfile transcript.log
 
 onerror {resume}
 quietly WaveActivateNextPane {} 0

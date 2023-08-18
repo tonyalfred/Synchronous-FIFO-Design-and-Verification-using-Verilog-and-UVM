@@ -17,6 +17,10 @@
     `ifndef FIFO_DEPTH
       `define FIFO_DEPTH    8
     `endif 
+
+    `ifndef FIFO_PTR_WIDTH
+      `define FIFO_PTR_WIDTH $clog2(`FIFO_DEPTH)
+    `endif 
   `endif
 
 /**********************************************************************************************************************
